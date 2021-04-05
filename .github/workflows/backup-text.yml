@@ -27,12 +27,13 @@ jobs:
     - name: Pull Data
       run: |
         python backup.py
+        python backup_images.py
     - name: Set current date as env variable
       id: date
       run: echo "::set-output name=date::$(date +'%Y%m%d_%H%M%S')"
     - name: Pack Data
       run: |
-        tar -zcvf backup.tgz data
+        tar -zcvf backup.tgz data images
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
